@@ -13,8 +13,8 @@
             <p></p>
             <input type="text" placeholder="Name" name="Name" required>
             <input type="email" placeholder="Email" name="Email">
-            <input type="number" placeholder="Mobile Number" maxlength="10" name="Mobile" required>
-            <select name="Gender">
+            <input type="text" placeholder="Mobile Number" name="Mobile" pattern="[1-9]{1}[0-9]{9}" title="Fill Correct Mobile Number" required>
+            <select name="Gender" id="gender">
                 <option value="Not Selected">Select Your Gender</option>
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
@@ -23,11 +23,17 @@
 
             </select>
             <textarea rows="5" placeholder="Write Your Query/Message" name="Message" required></textarea>
-            <button type="submit" name="submit" id="submit">Send</button>
+            <button type="submit" name="submit" id="submit" onclick="return check()">Send</button>
             
         </form>
     </div>
     <script>
+        function check(){
+        var g=document.getElementById("gender").value;
+        if(g=="Not Selected"){
+            alert("Kindly fill out all the required fields");
+            return false;
+        }}
         const scriptURL = 'https://script.google.com/macros/s/AKfycbynhXimpIkCOvRhE9eZucwRgC7X-1spaQxR-pWbVc19DM9YZGEWuGyA249lFxTPb-0/exec'
         const form = document.forms['google-sheet']
         var a=form.addEventListener('submit', e => {
